@@ -1,0 +1,25 @@
+<div class="bs-example" data-example-id="panel-without-body-with-table">
+  <!-- ng-app entry is made here on this server side page, designated as "placely".
+  The main.html page, a STATIC ASSET, which has our MainCtrl implemented as an ng-controller for that page,
+  is brought in via app.js (the Angular main entry point) using ui-router. Remember, app.js is brought in via
+  a script tag below. It's kinda convoluted!
+  1) server.js fires, defines server side routes that the server application will use: these could be ANY server side assets
+        including a static html page, hbs pages, or even non-http responses that are purely used as API calls.
+  2) a server side route to /admin will make a call to res.render() and render forth this .hbs file, which loads in needed JS files
+        for the Angular application to run.
+  3) Consequently, the Angular main entry app defines client more routes for the Angular application to use, the ui-router routes
+        that will server up any STATIC assets needed.
+   -->
+    <div class="panel panel-default" ng-app="placely">
+
+      <!-- UI-VIEW TARGET CONTAINER FOR -->
+      <div class="panel-heading" ui-view>[ADMIN NEW LISTINGS]</div>
+
+    </div>
+  </div>
+  <!-- BRING IN FRONT END SOURCE FILES -->
+      	<script src="resources/angular.js"></script>
+        <script src="resources/angular-ui-router.js"></script>
+      	<script src="../app-admin/app.js"></script>
+        <script src="../app-admin/features/MainCtrl.js"></script>
+        <script src="../app-admin/services/DataSource.js"></script>

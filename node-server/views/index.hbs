@@ -1,0 +1,10 @@
+<div class="jumbotron">
+    <h1 id="hello,-world!">PLACEly™
+        <a class="anchorjs-link" href="#hello,-world!">
+            <span class="anchorjs-icon"></span>
+        </a>
+    </h1>
+    <p>The place to place your places.</p>
+    {{#if loggedOut }}<p><a class="btn btn-primary btn-lg" href="/login" role="button">Log in</a></p>{{/if}}
+    <pre>status: {{#if loggedIn}}<span>you are logged in to PLACEly</span>{{/if}}{{#if loggedOut}}<span>you are logged out of PLACEly</span>{{/if}}</pre>
+</div>

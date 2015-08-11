@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PLACELY - the Place to Place your Places</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="resources/favicon.ico" type="image/ico" rel="shortcut icon">
+    <script src="resources/jquery-2.1.4.min.js"></script>
+    <script src="resources/bootstrap.min.js"></script>
+    <script src="resources/lodash.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap.css">
+</head>
+
+<body>
+    <!-- <i>loggedIn: {{loggedIn}}</i> -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">PLACEly</a>
+            </div>
+            <!-- MAIN NAVIGATION -->
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="{{#if home}}active{{/if}}"><a href="/">Home</a></li>
+                    <li class="{{#if listingPage}}active{{/if}}"><a href="/listings">Listings</a></li>
+                    <!-- NB: You can use bound if expressions in hbs markup to affect conditional show / hides of the elements they surround:
+                    the variable reference must be in scope and sent in with the res.render() call's -->
+                    {{#if loggedIn}}
+                    <li class="{{#if admin}}active{{/if}}"><a href="/admin">Admin</a></li>{{/if}}
+                    {{#if loggedIn}}
+                    <li class="{{#if admin}}active{{/if}}" class="pull-right">
+                        <form id="logout-form" action="logout" method="post" role="form">
+                            <input type="submit" id="js-log-out" class="btn btn-warning btn-md" href="#" role="button" value="Log out" name="logout"/>
+                        </form>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--/.container-fluid -->
+    </nav>
+    <div class="container">
+        {{{body}}}
+    </div>
+</body>
+<script type="text/javascript">
+
+</script>
+
+</html>

@@ -1,0 +1,71 @@
+<div class="bs-example" data-example-id="panel-without-body-with-table">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Current PLACEly page: {{pageNumber}} of {{totalPages}}</div>
+        <!-- Table -->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Places</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each pages}}
+                    <tr>
+                        <td>{{@index}}</td>
+                        <td>{{place}}</td>
+                        <td>{{locale}}</td>
+                        <td>{{desc}}</td>
+                        <!-- <td><img src="{{imgSrc}}" alt="pic"></img></td> http://lorempixel.com/400/200/city -->
+                        <td>
+                            <img src="{{imgSrc}}" class="img-responsive img-thumbnail" style="width: 20%;"></img>
+                        </td>
+                        <!-- You have access to the {{id}} value from the res.render() call's object parameter. You can send it along from the page
+                        with the href value when we click the link. We can add as many new variables as we like by separating them with the '&' token: &x=300&y=400 -->
+                        <td><a href="details?id={{id}}&x=300&y=200">view details</a></td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <nav>
+        <!-- PREVIOUS vs NEXT -->
+        <!--
+
+        pageNumber: page,
+        per_page: per_page,
+        total: items.length,
+        total_pages: Math.ceil(items.length / per_page),
+        data: paginatedItems
+        var linkItem = {
+            pageNumber: i,
+            isCurrentPage: currentPageFlag
+        }
+
+    -->
+        <ul class="pagination">
+            <li>
+                <a href="listings?page={{pageNumber}}&action=prev" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            {{#each pageDetails}}
+
+                {{#if isCurrentPage}}
+                    <li class="active"><a href="#">{{number}}</a></li>
+                {{else}}
+                    <li><a href="listings?page={{number}}">{{number}}</a></li>
+                {{/if}}
+            {{/each}}
+            <li>
+                <a href="listings?page={{pageNumber}}&action=next" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

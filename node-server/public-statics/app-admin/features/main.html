@@ -1,0 +1,84 @@
+<!-- Our MainCtrl CRUD controller and DataSource arebrought in by an ng-view attribute in the admin-listings.hbs (which
+is brought in by .hbs page) -->
+<!-- INPUT -->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Create new Listings in PLACEly™</h3>
+    </div>
+    <!-- PANEL BODY -->
+    <div class="panel panel-body">
+        <!-- CREATE button -->
+        <div class="btn-group">
+            <input type="text" name="place" placeholder="...place..." ng-model="listing.place">
+            <input type="text" name="place" placeholder="...locale..." ng-model="listing.locale">
+            <input type="text" name="place" placeholder="...description..." ng-model="listing.desc">
+            <input type="text" name="place" placeholder="...image src..." ng-model="listing.imgSrc">
+            <!-- <button ng-click="isEdit=! isEdit;">{{isEdit}}</button> -->
+        </div>
+        <button ng-click="saveListing(listing);" type="submit" class="btn btn-primary btn-sm active">Create listing</button>&nbsp
+        <table class="table table-striped box-shadow table-hover">
+            <thead>
+                <!-- the number of cells in the thead must match number in tbody, as well as tfoot! -->
+                <tr>
+                    <th>#</th>
+                    <th>Id</th>
+                    <th>Places</th>
+                    <th>Locale</th>
+                    <th>Description</th>
+                    <th>Images</th>
+                    <th>Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- REPEAT -->
+                <!-- a row contains various cell elements, like td
+                DATA STRUCTURE: listing
+                .place
+                .locale
+                .desc
+                .imgSrc
+                -->
+                <tr class="" ng-class="editColor" ng-repeat="listing in listings">
+                    <td>{{$index + 1}} | {{listing.isEditable}}</td>
+                    <td class="table-hover success">{{listing.id}}</td>
+                    <td for="place-field" class="">
+                         <span ng-show="!listing.isEditable">{{listing.place}}</span>
+                        <input ng-show="listing.isEditable" ng-change="isEdit = true;" id="place-field" type="text" name="created"
+                        placeholder="...place..." ng-model="listing.place">
+                    </td>
+                    <td for="locale-field" class="">
+                       <span ng-show="!listing.isEditable">{{listing.locale}}</span>
+                        <input ng-show="listing.isEditable" ng-change="isEdit = true;" id="locale-field" type="text" name="created" placeholder="...locale..."
+                        ng-model="listing.locale">
+                    </td>
+                    <td for="desc-field" class="">
+                        <span ng-show="!listing.isEditable">{{listing.desc}}</span>
+                        <input ng-show="listing.isEditable" ng-change="isEdit = true;" id="desc-field" type="text" name="created"
+                        placeholder="...description..." ng-model="listing.desc">
+                    </td>
+                    <td for="img-src-field" class="">
+                        <img ng-show="!listing.isEditable" src="{{listing.imgSrc}}" alt="pic 1" class="img-responsive img-thumbnail" style="width: 20%;" />
+                        <input ng-show="listing.isEditable" ng-change="isEdit = true;" id="img-src-field" type="text" name="created" placeholder="...image..."
+                        ng-model="listing.imgSrc">
+                    </td>
+                    <!-- know the index of current repeat as $index -->
+                    <!-- EDITS COLUMN -->
+                    <td>
+                        <!-- EDIT -->
+                        <!-- (you don't bind values for ng-hide / show') -->
+                        <button ng-hide="listing.isEditable" ng-click="toggleEdits(listing);" class="btn btn-md btn-primary">Edit {{$index + 1}}</button>
+                        <!-- SAVE -->
+                        <button ng-hide="!listing.isEditable" ng-click="updateListing(listing)" class="btn btn-md btn-success">Save</button>
+                        <!-- CLOSE -->
+                        <button ng-click="removeListing(listing)" class="btn btn-md btn-danger">X</button>
+                    </td>
+                </tr>
+                <!-- CLOSES TABLE ROW -->
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-footer">
+        <!-- <button ng-click="saveAll();">SAVE ALL</button> -->
+        <pre>Current locale db: {{listings}}</pre>
+    </div>
+</div>
